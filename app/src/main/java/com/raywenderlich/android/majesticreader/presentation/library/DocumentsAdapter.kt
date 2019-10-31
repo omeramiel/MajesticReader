@@ -49,7 +49,7 @@ class DocumentsAdapter(
         private val itemClickListener: (Document) -> Unit
 ) : RecyclerView.Adapter<DocumentsAdapter.ViewHolder>() {
 
-  class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+  inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val previewImageView: ImageView = view.ivPreview
     val titleTextView: TextView = view.tvTitle
     val sizeTextView: TextView = view.tvSize
@@ -74,7 +74,7 @@ class DocumentsAdapter(
     holder.itemView.setOnClickListener { itemClickListener.invoke(documents[position]) }
   }
 
-  fun update(newDocuments: List<Document>) {
+  internal fun update(newDocuments: List<Document>) {
     documents.clear()
     documents.addAll(newDocuments)
 
