@@ -31,30 +31,22 @@
 package com.raywenderlich.android.majesticreader.framework
 
 import android.app.Application
-import com.raywenderlich.android.majesticreader.data.BookmarkRepository
-import com.raywenderlich.android.majesticreader.data.DocumentRepository
-import com.raywenderlich.android.majesticreader.interactors.*
+import com.raywenderlich.android.majesticreader.di.appModule
+import com.raywenderlich.android.majesticreader.di.coreModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class MajesticReaderApplication : Application() {
 
-  override fun onCreate() {
-    super.onCreate()
+    override fun onCreate() {
+        super.onCreate()
 
-    val bookmarkRepository = BookmarkRepository(RoomBookmarkDataSource(this))
-    val documentRepository = DocumentRepository(RoomDocumentDataSource(this), InMemoryOpenDocumentDataSource())
-
-    MajesticViewModelFactory.inject(
-        this,
-        Interactors(
-                AddBookmarkUseCase(bookmarkRepository),
-                RemoveBookmarkUseCase(bookmarkRepository),
-                GetBookmarksUseCase(bookmarkRepository),
-                AddDocumentUseCase(documentRepository),
-                RemoveDocumentUseCase(documentRepository),
-                GetDocumentsUseCase(documentRepository),
-                GetOpenDocumentUseCase(documentRepository),
-                SetOpenDocumentUseCase(documentRepository)
-                )
-    )
-  }
+        // start Koin!
+        startKoin {
+            // declare used Android context
+            androidContext(this@MajesticReaderApplication)
+            // declare modules
+            modules(listOf(coreModule, appModule))
+        }
+    }
 }

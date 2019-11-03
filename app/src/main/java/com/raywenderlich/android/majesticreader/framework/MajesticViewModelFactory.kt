@@ -33,6 +33,7 @@ package com.raywenderlich.android.majesticreader.framework
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.raywenderlich.android.majesticreader.interactors.Interactors
 
 object MajesticViewModelFactory : ViewModelProvider.Factory {
 

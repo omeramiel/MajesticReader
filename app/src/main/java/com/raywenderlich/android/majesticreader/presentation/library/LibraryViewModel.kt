@@ -34,9 +34,12 @@ import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.raywenderlich.android.majesticreader.domain.Document
-import com.raywenderlich.android.majesticreader.framework.Interactors
 import com.raywenderlich.android.majesticreader.framework.MajesticViewModel
-import kotlinx.coroutines.*
+import com.raywenderlich.android.majesticreader.interactors.Interactors
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LibraryViewModel(application: Application, interactors: Interactors)
     : MajesticViewModel(application, interactors) {

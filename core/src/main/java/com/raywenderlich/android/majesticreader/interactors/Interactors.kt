@@ -1,6 +1,4 @@
-package com.raywenderlich.android.majesticreader.framework
-
-import com.raywenderlich.android.majesticreader.interactors.*
+package com.raywenderlich.android.majesticreader.interactors
 
 data class Interactors(val addBookmarkUseCase: AddBookmarkUseCase,
                   val deleteBookmarkUseCase: RemoveBookmarkUseCase,
